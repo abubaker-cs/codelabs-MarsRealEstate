@@ -51,17 +51,18 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateProperties() {
         _response.value = "Set the Mars API Response here!"
 
+        // We are using enqueue to start the network request on a background thread
         MarsApi.retrofitService.getProperties().enqueue(
 
-                //
+                // This object will contain the type of the response received from the web server
                 object : Callback<String> {
 
-                    //
+                    // It is called when the web service response is successful
                     override fun onResponse(call: Call<String>, response: Response<String>) {
                         _response.value = response.body()
                     }
 
-                    //
+                    // It is called when the web service response is failed
                     override fun onFailure(call: Call<String>, t: Throwable) {
                         _response.value = "Failure: " + t.message
                     }

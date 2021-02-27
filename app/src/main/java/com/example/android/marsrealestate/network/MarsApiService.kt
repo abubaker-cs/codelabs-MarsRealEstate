@@ -24,27 +24,33 @@ import retrofit2.http.GET
 
 private const val BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com/"
 
-// We are using Builder to create a Retrofit Object
+// Retrofit's Builder needs two things to build a "Web Service API":
+// 1. A BASE_URL to work with
+// 2. A Converter Factory: It tells Retrofit what to do with the data it gets back from the web service.
+// Retrofit includes built-in support for popular web data formats such as XML and JSON.
 private val retrofit = Retrofit.Builder()
         .addConverterFactory(ScalarsConverterFactory.create())
         .baseUrl(BASE_URL)
         .build()
 
-// Our Interface which will define how Retrofit will talk to the web server using HTTP Requests
+// It will define "HOW" Retrofit will talk to the web server using HTTP Requests
 interface MarsApiService {
 
-    // Endpoint: realestate
+    // Based on our provided ENDPOINT a CALL object will be used to start the web request
     // Format: BASE_URL/Endpoint
     // Example: https://android-kotlin-fun-mars-server.appspot.com/realestate
     @GET("realestate")
     fun getProperties():
             Call<String>
+
 }
 
-// This object will initialize the Retrofit service
+// Public Object: It will be used to initialize the Retrofit service from internal files,
+// i.e. we will use it to make calls from OverviewViewModel.kt file
 object MarsApi {
 
-    //
+    // Create() method will create teh REtrofit service itself with our MarsApiService interface
+    // defined above, due to its nature we will prefer to initialize it using "lazily".
     val retrofitService: MarsApiService by lazy {
         retrofit.create(MarsApiService::class.java)
     }
