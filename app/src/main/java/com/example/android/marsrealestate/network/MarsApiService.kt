@@ -48,8 +48,7 @@ interface MarsApiService {
     // Example: https://android-kotlin-fun-mars-server.appspot.com/realestate
     // Note: the structure for the MarsProperty is defined in our data class in MarsProperty.kt file
     @GET("realestate")
-    fun getProperties():
-            Call<List<MarsProperty>>
+    suspend fun getProperties(): List<MarsProperty>
 
 }
 
@@ -57,7 +56,7 @@ interface MarsApiService {
 // i.e. we will use it to make calls from OverviewViewModel.kt file
 object MarsApi {
 
-    // Create() method will create teh REtrofit service itself with our MarsApiService interface
+    // Create() method will create teh Retrofit service itself with our MarsApiService interface
     // defined above, due to its nature we will prefer to initialize it using "lazily".
 
     // Remember "lazy instantiation" is when object creation is purposely delayed until you actually
