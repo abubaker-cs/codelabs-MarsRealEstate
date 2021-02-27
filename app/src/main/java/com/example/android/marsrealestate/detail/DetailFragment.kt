@@ -36,4 +36,5 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
         return binding.root
     }
+
 }
