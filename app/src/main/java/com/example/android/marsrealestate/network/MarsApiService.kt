@@ -32,6 +32,10 @@ private val retrofit = Retrofit.Builder()
 
 // Our Interface which will define how Retrofit will talk to the web server using HTTP Requests
 interface MarsApiService {
+
+    // Endpoint: realestate
+    // Format: BASE_URL/Endpoint
+    // Example: https://android-kotlin-fun-mars-server.appspot.com/realestate
     @GET("realestate")
     fun getProperties():
             Call<String>
@@ -39,7 +43,10 @@ interface MarsApiService {
 
 // This object will initialize the Retrofit service
 object MarsApi {
+
+    //
     val retrofitService: MarsApiService by lazy {
         retrofit.create(MarsApiService::class.java)
     }
+
 }
