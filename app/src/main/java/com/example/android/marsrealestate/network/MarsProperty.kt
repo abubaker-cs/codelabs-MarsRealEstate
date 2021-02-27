@@ -17,4 +17,19 @@
 
 package com.example.android.marsrealestate.network
 
-class MarsProperty()
+import com.squareup.moshi.Json
+
+/**
+ * If our DATA CLASS has properties names identical to the "Keys" in the JSON Response
+ * then Moshi will match them by name
+ *
+ * If the properties are confusing or if they may not match with our "coding style", then
+ * we can use annotation @Json(name="") specifying the "Actual JSON Name" inside the (name="")
+ *
+ */
+data class MarsProperty(
+        val id: String,
+        @Json(name = "img_src") val imgSrcUrl: String,
+        val type: String,
+        val price: Double
+)
