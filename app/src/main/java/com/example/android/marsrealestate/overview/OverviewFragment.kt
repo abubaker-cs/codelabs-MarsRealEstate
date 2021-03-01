@@ -45,10 +45,10 @@ class OverviewFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         // Note: FragmentOverviewBinding = fragment_overview.xml file
-        // val binding = FragmentOverviewBinding.inflate(inflater)
+        val binding = FragmentOverviewBinding.inflate(inflater)
 
         // Note: GridViewItemBinding = grid_view_item.xml file
-        val binding = GridViewItemBinding.inflate(inflater)
+        // val binding = GridViewItemBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
