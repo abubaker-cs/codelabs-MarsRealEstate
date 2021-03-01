@@ -23,11 +23,14 @@
 
     <data>
 
+        <!-- We are binding this layout to the OverviewViewModel.kt file -->
         <variable
             name="viewModel"
             type="com.example.android.marsrealestate.overview.OverviewViewModel" />
+
     </data>
 
+    <!-- We are using app:imageUrl=@{} for binding adapter -->
     <ImageView
         android:id="@+id/mars_image"
         android:layout_width="match_parent"

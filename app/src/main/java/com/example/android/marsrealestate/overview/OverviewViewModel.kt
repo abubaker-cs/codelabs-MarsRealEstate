@@ -67,7 +67,7 @@ class OverviewViewModel : ViewModel() {
                 val listResult = MarsApi.retrofitService.getProperties()
                 _response.value = "Success: ${listResult.size} Mars properties retrieved"
 
-                // It sets teh value of the _property to the first property in the listResult
+                // It sets the value of the _property to the 0-index inside the ListResult
                 if (listResult.size > 0) {
                     _property.value = listResult[0]
                 }

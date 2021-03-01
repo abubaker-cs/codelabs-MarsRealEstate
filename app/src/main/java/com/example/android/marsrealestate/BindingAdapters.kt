@@ -23,20 +23,36 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
+/**
+ * Loading image through Glide
+ * @BindingAdapter() it will tell "data binding" that we want this "binding adapter" bindImage()
+ * EXECUTED, when our chosen XML item will have the imageUrl attribute.
+ */
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
 
+    // It is a conditional statement
     imgUrl?.let {
 
-        // Uri Object
+        // This code will convert "a string" to a "Uri Object"
+        // 1. toUri() is a Kotlin extension function provided by Android KTX core library.
+        // 2. Since our server wants a secure connection, that's why we will use HTTPS Scheme to
+        // append https using buildUpon().scheme("https") method.
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
 
-        // Load the image from the Uri object
+        // Now, by using our Uri Object (which has our URL Link) we can easily load our picture
+        // by using following code:
         Glide.with(imgView.context)
+
+                // We are providing URL through "Uri Object"
                 .load(imgUri)
+
+                // Optional: Placeholder & No Connection icons
                 .apply(RequestOptions()
                         .placeholder(R.drawable.loading_animation)
                         .error(R.drawable.ic_broken_image))
+
+                // Targeted <ImageView> component in which the image will be loaded.
                 .into(imgView)
     }
 
