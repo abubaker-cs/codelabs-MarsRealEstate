@@ -48,6 +48,8 @@
     -->
     <!--
         app:imageUrl="@{viewModel.property.imgSrcUrl}"
+
+        @{property.imgSrcUrl}
      -->
     <ImageView
         android:id="@+id/mars_image"

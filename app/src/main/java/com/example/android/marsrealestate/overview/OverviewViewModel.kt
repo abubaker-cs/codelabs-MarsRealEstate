@@ -41,16 +41,13 @@ class OverviewViewModel : ViewModel() {
     val response: LiveData<String>
         get() = _response
 
-    // LiveData for a Single Mars Property
+    // LiveData: It will hold the "entire list" of MarsProperty Objects
     private val _properties = MutableLiveData<List<MarsProperty>>()
 
     val properties: LiveData<List<MarsProperty>>
         get() = _properties
 
-    // private val _property = MutableLiveData<MarsProperty>()
 
-    // val property: LiveData<MarsProperty>
-    // get() = _property
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
