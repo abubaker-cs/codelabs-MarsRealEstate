@@ -85,12 +85,12 @@ class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsProperty
     // onCreateViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.MarsPropertyViewHolder {
 
-        //
+        // It will inflate the GridViewItemBinding (grid_view_item.xml) file
         return MarsPropertyViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
 
     }
 
-    // onBindViewHolder
+    // onBindViewHolder | We are injecting our MarsPropertyViewHolder class and using it
     override fun onBindViewHolder(holder: PhotoGridAdapter.MarsPropertyViewHolder, position: Int) {
 
         //
