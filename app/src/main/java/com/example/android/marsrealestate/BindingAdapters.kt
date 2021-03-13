@@ -84,7 +84,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsProperty>?) {
 }
 
 /*
- * marsApiStatus
+ * marsApiStatus - We will implement our logic to take actions based on the current context / state
  */
 @BindingAdapter("marsApiStatus")
 fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
@@ -94,18 +94,25 @@ fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
 
         // 1. Loading (initial stage)
         MarsApiStatus.LOADING -> {
+            // // ImageView should be visible in the Loading state
             statusImageView.visibility = View.VISIBLE
+
+            // Display Loading Animation
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
 
         // 2. Done State (Success)
         MarsApiStatus.DONE -> {
+            // ImageView should be invisible once the app is done loading
             statusImageView.visibility = View.GONE
         }
 
         // 3. Error State
         MarsApiStatus.ERROR -> {
+            // ImageView should be visible in the Error state
             statusImageView.visibility = View.VISIBLE
+
+            // Display Error Icon
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
 
