@@ -47,6 +47,26 @@ class OverviewViewModel : ViewModel() {
     val properties: LiveData<List<MarsProperty>>
         get() = _properties
 
+    /**
+     * Once the user will click on an item inside the RecyclerView's GRID then following code
+     * will be helpful for navigating to the Detailed View
+     */
+    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
+    val navigateToSelectedProperty: LiveData<MarsProperty>
+        get() = _navigateToSelectedProperty
+
+
+    // Assign to the selected Mars property
+    fun displayPropertyDetails(marsProperty: MarsProperty) {
+        _navigateToSelectedProperty.value = marsProperty
+    }
+
+    // Marks the navigation state to complete
+    // It will also help in avoid navigation being triggered again when the user will return from the detail view.
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
+    }
+
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.

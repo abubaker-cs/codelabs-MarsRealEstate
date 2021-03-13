@@ -38,7 +38,8 @@ import com.example.android.marsrealestate.network.MarsProperty
  * 2. ViewHolder
  * 3. DiffUtil.ItemCallback
  */
-class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
+class PhotoGridAdapter(private val onClickListener: OnClickListener) :
+        ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
 
     // It will extend DiffUtil.ItemCallback<> with the type of object we want to compare,
     // i.e MarsProperty that is defined in the MarsProperty.kt file with:
@@ -96,12 +97,24 @@ class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsProperty
         // We are calling getItem() to get the MarsProperty object associated with the current RecyclerView position,
         val marsProperty = getItem(position)
 
+        // click listener
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(marsProperty)
+        }
+
         // At the end we are passing marsProperty to the bind() method
         holder.bind(marsProperty)
 
     }
 
+    // Custom Click Listener
+    class OnClickListener(val clickListener: (marsProperty: MarsProperty) -> Unit) {
+        fun onClick(marsProperty: MarsProperty) = clickListener(marsProperty)
+    }
+
 }
+
+
 
 
 

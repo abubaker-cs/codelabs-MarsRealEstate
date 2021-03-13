@@ -17,7 +17,9 @@
 
 package com.example.android.marsrealestate.network
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
 /**
  * If our DATA CLASS has properties names identical to the "Keys" in the JSON Response
@@ -27,12 +29,14 @@ import com.squareup.moshi.Json
  * we can use annotation @Json(name="") specifying the "Actual JSON Name" inside the (name="")
  *
  */
+
+@Parcelize
 data class MarsProperty(
         val id: String,
         @Json(name = "img_src") val imgSrcUrl: String,
         val type: String,
         val price: Double
-) {
+) : Parcelable {
     val isRental
         get() = type == "rent"
 }
