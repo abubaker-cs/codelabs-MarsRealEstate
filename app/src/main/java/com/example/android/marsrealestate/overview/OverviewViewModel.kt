@@ -61,15 +61,15 @@ class OverviewViewModel : ViewModel() {
 
         viewModelScope.launch {
 
-            // Loading State
+            // 1. State: Loading
             _status.value = MarsApiStatus.LOADING
 
             try {
 
-                //
+                // This code will be used to initialize the web request (ref: MarsApiServices.kt file)
                 val listResult = MarsApi.retrofitService.getProperties()
 
-                // Success State
+                // 2. State: Success
                 _status.value = MarsApiStatus.DONE
 
                 // It sets the value of the _property to the 0-index inside the ListResult
@@ -79,7 +79,7 @@ class OverviewViewModel : ViewModel() {
 
             } catch (e: Exception) {
 
-                // Error State
+                // 3. State: Error
                 _status.value = MarsApiStatus.ERROR
 
                 // It will clear the RecyclerView

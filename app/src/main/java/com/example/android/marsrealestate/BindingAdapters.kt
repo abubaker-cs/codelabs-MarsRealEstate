@@ -88,19 +88,26 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsProperty>?) {
  */
 @BindingAdapter("marsApiStatus")
 fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
+
+    // Conditional Statement (When = Switch)
     when (status) {
+
+        // 1. Loading (initial stage)
         MarsApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
 
+        // 2. Done State (Success)
+        MarsApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+
+        // 3. Error State
         MarsApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
 
-        MarsApiStatus.DONE -> {
-            statusImageView.visibility = View.GONE
-        }
     }
 }
