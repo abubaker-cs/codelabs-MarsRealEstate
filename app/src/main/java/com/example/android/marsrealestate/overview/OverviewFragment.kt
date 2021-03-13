@@ -73,11 +73,14 @@ class OverviewFragment : Fragment() {
     }
 
     /**
-     *
+     * Based on the "current context" this code will initialize updateFilter()
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
+        // it is reference to updateFilter in OverviewViewModel.kt file
         viewModel.updateFilter(
+
+                // It will provide current context for the query, i.e. rent, buy, all
                 when (item.itemId) {
                     R.id.show_rent_menu -> MarsApiFilter.SHOW_RENT
                     R.id.show_buy_menu -> MarsApiFilter.SHOW_BUY
@@ -87,4 +90,5 @@ class OverviewFragment : Fragment() {
 
         return true
     }
+
 }
