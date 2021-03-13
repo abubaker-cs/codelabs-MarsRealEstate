@@ -18,6 +18,8 @@ package com.example.android.marsrealestate.detail
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.marsrealestate.network.MarsProperty
 
@@ -26,5 +28,34 @@ import com.example.android.marsrealestate.network.MarsProperty
  */
 class DetailViewModel(@Suppress("UNUSED_PARAMETER") marsProperty: MarsProperty, app: Application) : AndroidViewModel(app) {
 
+    /**
+     * This will expose properties to the Detail View
+     */
+    private val _selectedProperty = MutableLiveData<MarsProperty>()
+    val selectedProperty: LiveData<MarsProperty>
+        get() = _selectedProperty
 
+    init {
+        _selectedProperty.value = marsProperty
+    }
+
+    /**
+     * Once the user will click on an item inside the RecyclerView's GRID then following code
+     * will be helpful for navigating to the Detailed View
+     */
+    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
+    val navigateToSelectedProperty: LiveData<MarsProperty>
+        get() = _navigateToSelectedProperty
+
+
+    // Assign to the selected Mars property
+    fun displayPropertyDetails(marsProperty: MarsProperty) {
+        _navigateToSelectedProperty.value = marsProperty
+    }
+
+    // Marks the navigation state to complete
+    // It will also help in avoid navigation being triggered again when the user will return from the detail view.
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
+    }
 }
