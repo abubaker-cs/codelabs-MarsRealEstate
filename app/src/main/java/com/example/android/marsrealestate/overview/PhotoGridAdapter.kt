@@ -82,7 +82,7 @@ class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsProperty
      * We implemented these ListAdapter methods by pressing Ctrl + i
      */
 
-    // onCreateViewHolder
+    // onCreateViewHolder: It needs to return a new MarsPropertyViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.MarsPropertyViewHolder {
 
         // It will inflate the GridViewItemBinding (grid_view_item.xml) file
@@ -93,8 +93,10 @@ class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsProperty
     // onBindViewHolder | We are injecting our MarsPropertyViewHolder class and using it
     override fun onBindViewHolder(holder: PhotoGridAdapter.MarsPropertyViewHolder, position: Int) {
 
-        //
+        // We are calling getItem() to get the MarsProperty object associated with the current RecyclerView position,
         val marsProperty = getItem(position)
+
+        // At the end we are passing marsProperty to the bind() method
         holder.bind(marsProperty)
 
     }

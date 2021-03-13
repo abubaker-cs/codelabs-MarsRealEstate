@@ -26,14 +26,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.android.marsrealestate.network.MarsProperty
 import com.example.android.marsrealestate.overview.PhotoGridAdapter
 
-/**
- *
- */
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsProperty>?) {
-    val adapter = recyclerView.adapter as PhotoGridAdapter
-    adapter.submitList(data)
-}
+
 
 
 /**
@@ -71,3 +64,19 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 
 }
 
+/**
+ * We will use this code to initialize PhotoGridAdapter with the list of MarsProperty objects
+ */
+
+// Note: Using @BindingAdapter(), causes data binding to automatically observe the LiveData for changes.
+// Then the binding adapter is called automatically when the MarsProperty list changes.
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsProperty>?) {
+
+    // We are casting our adapter as PhotoGridAdapter
+    val adapter = recyclerView.adapter as PhotoGridAdapter
+
+    // Now, we are calling the adapter with data
+    adapter.submitList(data)
+
+}
