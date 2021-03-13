@@ -23,42 +23,58 @@
 
     <data>
 
+        <!--
+            We use imports when we want to use components, of "a class" inside a "data binding expression" in a layout file.
+            We will be using view.GONE and view.VISIBLE constants.
+         -->
+        <import type="android.view.View" />
+
         <!-- We are binding this layout to the OverviewViewModel.kt file -->
         <variable
             name="property"
             type="com.example.android.marsrealestate.network.MarsProperty" />
 
-        <!--
-            <variable
-            name="viewModel"
-            type="com.example.android.marsrealestate.overview.OverviewViewModel" />
-        -->
-
     </data>
 
-    <!--
-        We are using app:imageUrl=@{} for binding adapter:
-
-        Remember that in BindingAdapters.kt file, we used @BindingAdapter("imageUrl") for bindImage()
-        method? So, whatever variable we will assign inside the @BindingAdapter("***") will be auto
-        displayed as soon as we will type app:*** for binding attribute in the <ImageView>
-
-        It means, that there is a binding connection between this <ImageView> and our bindImage()
-        method using the "imageUrl" reference.
-    -->
-    <!--
-        app:imageUrl="@{viewModel.property.imgSrcUrl}"
-
-        @{property.imgSrcUrl}
-     -->
-    <ImageView
-        android:id="@+id/mars_image"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:adjustViewBounds="true"
-        android:padding="2dp"
-        android:scaleType="centerCrop"
-        app:imageUrl="@{property.imgSrcUrl}"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        android:layout_height="170dp">
+
+        <!--
+            We are using app:imageUrl=@{} for binding adapter:
+
+            Remember that in BindingAdapters.kt file, we used @BindingAdapter("imageUrl") for bindImage()
+            method? So, whatever variable we will assign inside the @BindingAdapter("***") will be auto
+            displayed as soon as we will type app:*** for binding attribute in the <ImageView>
+
+            It means, that there is a binding connection between this <ImageView> and our bindImage()
+            method using the "imageUrl" reference.
+        -->
+
+        <!-- Main image -->
+        <ImageView
+            android:id="@+id/mars_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{property.imgSrcUrl}"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <!-- For Sale: $ Symbol-->
+        <ImageView
+            android:id="@+id/mars_property_type"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_gravity="bottom|end"
+            android:adjustViewBounds="true"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_for_sale_outline"
+            android:visibility="@{property.rental ? View.GONE : View.VISIBLE}"
+            tools:src="@drawable/ic_for_sale_outline" />
+
+    </FrameLayout>
 
 </layout>
