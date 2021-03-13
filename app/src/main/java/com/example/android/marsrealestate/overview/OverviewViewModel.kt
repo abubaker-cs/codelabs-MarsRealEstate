@@ -21,12 +21,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import retrofit2.Callback
 import com.example.android.marsrealestate.network.MarsApi
 import com.example.android.marsrealestate.network.MarsProperty
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Response
 
 
 /**
@@ -46,7 +43,6 @@ class OverviewViewModel : ViewModel() {
 
     val properties: LiveData<List<MarsProperty>>
         get() = _properties
-
 
 
     /**
@@ -81,25 +77,5 @@ class OverviewViewModel : ViewModel() {
 
         }
 
-
-        // _response.value = "Set the Mars API Response here!"
-
-        // We are using enqueue to start the network request on a background thread
-        //MarsApi.retrofitService.getProperties().enqueue(
-
-        // This object will contain the type of the response received from the web server
-        // object : Callback<List<MarsProperty>> {
-
-        // It is called when the web service response is successful
-        // override fun onResponse(call: Call<List<MarsProperty>>, response: Response<List<MarsProperty>>) {
-        //    _response.value = "Success: ${response.body()?.size} Mars properties retrieved"
-        //}
-
-        // It is called when the web service response is failed
-        //override fun onFailure(call: Call<List<MarsProperty>>, t: Throwable) {
-        // _response.value = "Failure: " + t.message
-        //}
-
-        //})
     }
 }
