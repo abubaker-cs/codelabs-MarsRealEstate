@@ -28,9 +28,6 @@ import com.example.android.marsrealestate.network.MarsProperty
 import com.example.android.marsrealestate.overview.MarsApiStatus
 import com.example.android.marsrealestate.overview.PhotoGridAdapter
 
-
-
-
 /**
  * Loading image through Glide
  * @BindingAdapter() it will tell "data binding" that we want this "binding adapter" bindImage()
