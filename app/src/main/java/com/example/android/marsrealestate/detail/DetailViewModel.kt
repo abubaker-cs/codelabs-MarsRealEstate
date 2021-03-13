@@ -27,7 +27,7 @@ import com.example.android.marsrealestate.R
 class DetailViewModel(@Suppress("UNUSED_PARAMETER") marsProperty: MarsProperty, app: Application) : AndroidViewModel(app) {
 
     /**
-     * This will expose properties to the Detail View
+     * This will expose the information to the DetailViewModel
      */
     private val _selectedProperty = MutableLiveData<MarsProperty>()
     val selectedProperty: LiveData<MarsProperty>
