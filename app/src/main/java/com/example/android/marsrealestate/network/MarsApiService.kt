@@ -23,7 +23,17 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
+// It will define the constants that match the query values the web service expects
+// Example: https://android-kotlin-fun-mars-server.appspot.com/realestate?filter=buy
+enum class MarsApiFilter(val value: String) {
+    SHOW_RENT("rent"),
+    SHOW_BUY("buy"),
+    SHOW_ALL("all")
+}
+
+// Base URL
 private const val BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com/"
 
 // We will create Moshi Builder to parse JSON data
@@ -47,8 +57,9 @@ interface MarsApiService {
     // Format: BASE_URL/Endpoint
     // Example: https://android-kotlin-fun-mars-server.appspot.com/realestate
     // Note: the structure for the MarsProperty is defined in our data class in MarsProperty.kt file
+    // Note: @Query("filter") will modify query based on this context URL/realestate?filter=buy
     @GET("realestate")
-    suspend fun getProperties(): List<MarsProperty>
+    suspend fun getProperties(@Query("filter") types: String): List<MarsProperty>
 
 }
 
